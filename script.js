@@ -297,21 +297,37 @@ document.querySelector('.download-btn').addEventListener('click', function(e) {
     showNotification('Resume download will be available soon!', 'info');
     
     // In a real implementation, you would trigger the actual download here
-    // window.open('path/to/resume.pdf', '_blank');
-});
-
+     window.open('assets/TRIVENI_RESUME_.pdf', '_blank');
+}
 // Social media links click handling
+ 
 document.querySelectorAll('.social-link').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         
-        const platform = this.querySelector('i').classList.contains('fa-linkedin') ? 'LinkedIn' : 'GitHub';
-        showNotification(`${platform} profile will be available soon!`, 'info');
-        
-        // In a real implementation, you would have actual social media URLs
-        // window.open('actual-social-url', '_blank');
+        const icon = this.querySelector('i');
+
+        let platform = '';
+        let url = '';
+
+        if (icon.classList.contains('fa-linkedin')) {
+            platform = 'LinkedIn';
+            url = 'https://www.linkedin.com/in/triveni-gavathe-89050831b/';
+        } else if (icon.classList.contains('fa-github')) {
+            platform = 'GitHub';
+            url = 'https://github.com/gavathe';
+        } else {
+            platform = 'Social';
+        }
+
+        showNotification(`${platform} profile is opening...`, 'info');
+
+        if (url) {
+            window.open(url, '_blank');
+        }
     });
-});
+}));
+
 
 // Add CSS for active nav link
 const style = document.createElement('style');
